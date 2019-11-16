@@ -1,5 +1,3 @@
-- **Work with returned value of dictionary type**
-
  ## Benchmark
  Benchmark results with Detectron's checkpoints are same as the numbers reported by Detetron.
 
