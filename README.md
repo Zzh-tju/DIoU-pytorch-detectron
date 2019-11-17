@@ -50,7 +50,7 @@ e2e_faster_rcnn_R-50-FPN_ciou_1x.yaml   # Faster R-CNN + CIoU loss
 ```
 
 ### DIoU-NMS
-NMS can be chosen with the `TEST.DIOUNMS` option in the `lib/core/config.py` file. If set it to `False`, it means using greedy-NMS.
+NMS can be chosen with the `TEST.DIOU_NMS` option in the `lib/core/config.py` file. If set it to `False`, it means using greedy-NMS.
 Besides that, we also found that for Faster R-CNN, we introduce beta1 for DIoU-NMS, that is DIoU = IoU - R_DIoU ^ {beta1}. With this operation, DIoU-NMS can perform better than default beta1=1.0.
 ```
 TEST.DIOU_NMS.BETA1=1.1
