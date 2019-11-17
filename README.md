@@ -58,9 +58,77 @@ e2e_faster_rcnn_R-50-FPN_ciou_1x.yaml   # Faster R-CNN + CIoU loss
 
 ### Getting Started
 ```
-git clone 
+git clone https://github.com/Zzh-tju/DIoU-pytorch-detectron.git
 ```
 
+### Requirements
+
+Tested under python3.
+
+- python packages
+  - pytorch>=0.3.1
+  - torchvision>=0.2.0
+  - cython
+  - matplotlib
+  - numpy
+  - scipy
+  - opencv
+  - pyyaml
+  - packaging
+  - [pycocotools](https://github.com/cocodataset/cocoapi)  — for COCO dataset, also available from pip.
+  - tensorboardX  — for logging the losses in Tensorboard
+- An NVIDAI GPU and CUDA 8.0 or higher. Some operations only have gpu implementation.
+- **NOTICE**: different versions of Pytorch package have different memory usages.
+
+### Compilation
+
+Compile the CUDA code:
+
+```
+cd lib  # please change to this directory
+sh make.sh
+### Data Preparation
+
+Create a data folder under the repo,
+
+```
+cd {repo_root}
+mkdir data
+```
+
+- **COCO**:
+  Download the coco images and annotations from [coco website](http://cocodataset.org/#download).
+
+  And make sure to put the files as the following structure:
+  ```
+  coco
+  ├── annotations
+  |   ├── instances_minival2014.json
+  │   ├── instances_train2014.json
+  │   ├── instances_train2017.json
+  │   ├── instances_val2014.json
+  │   ├── instances_val2017.json
+  │   ├── instances_valminusminival2014.json
+  │   ├── ...
+  |
+  └── images
+      ├── train2014
+      ├── train2017
+      ├── val2014
+      ├──val2017
+      ├── ...
+  ```
+  Download coco mini annotations from [here](https://s3-us-west-2.amazonaws.com/detectron/coco/coco_annotations_minival.tgz).
+  Please note that minival is exactly equivalent to the recently defined 2017 val set. Similarly, the union of valminusminival and the 2014 train is exactly equivalent to the 2017 train set.
+
+   Feel free to put the dataset at any place you want, and then soft link the dataset under the `data/` folder:
+
+   ```
+   ln -s path/to/coco data/coco
+   ```
+
+  Recommend to put the images on a SSD for possible better training performance
+  
 ## Train and evaluation commands
 
 For detailed installation instruction and network training options, please take a look at the README file or issue of [roytseng-tw/Detectron.pytorch](https://github.com/roytseng-tw/Detectron.pytorch). Following is a sample command we used for training and testing Faster R-CNN with DIoU and CIoU.
