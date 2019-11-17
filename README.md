@@ -42,13 +42,11 @@ Of course, as we observed that for dense anchor algorithms, increasing the `LOSS
 
 ### Network Configurations
 
-We add sample configuration files used for our experiment in `config/baselines`. Our experiments in the paper are based on `e2e_faster_rcnn_R-50-FPN_1x.yaml` and `e2e_mask_rcnn_R-50-FPN_1x.yaml` as following:
+We add sample configuration files used for our experiment in `config/baselines`. Our experiments in the paper are based on `e2e_faster_rcnn_R-50-FPN_1x.yaml` as following:
 
 ```
 e2e_faster_rcnn_R-50-FPN_diou_1x.yaml  # Faster R-CNN + DIoU loss
 e2e_faster_rcnn_R-50-FPN_ciou_1x.yaml   # Faster R-CNN + CIoU loss
-e2e_mask_rcnn_R-50-FPN_diou_1x.yaml    # Mask R-CNN + DIoU loss
-e2e_mask_rcnn_R-50-FPN_ciou_1x.yaml     # Mask R-CNN + CIoU loss
 ```
 
 ##DIoU-NMS
