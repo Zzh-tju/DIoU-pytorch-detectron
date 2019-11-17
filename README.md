@@ -44,7 +44,7 @@ Of course, as we observed that for dense anchor algorithms, increasing the `LOSS
 NMS can be chosen with the `TEST.DIOU_NMS` option in the `lib/core/config.py` file. If set it to `False`, it means using greedy-NMS.
 Besides that, we also found that for Faster R-CNN, we introduce beta1 for DIoU-NMS, that is DIoU = IoU - R_DIoU ^ {beta1}. With this operation, DIoU-NMS can perform better than default beta1=1.0. In our constrained search, the following values appear to work well for the DIoU-NMS in Faster R-CNN.
 ```
-TEST.DIOU_NMS.BETA1=1.1
+TEST.DIOU_NMS.BETA1=0.9
 ```
 
 ### Network Configurations
