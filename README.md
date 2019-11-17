@@ -38,7 +38,7 @@ We also implement a normalizer of final bounding box refinement loss. This can b
 MODEL:
   LOSS_BBOX_WEIGHT: 12.
 ```
-Of course, as we observed that for dense anchor algorithms, increasing the `LOSS_BBOX_WEIGHT` appropriately can improve the performance, and the same argument is obtained in GHM (AAAI 2019)and Libra R-CNN (CVPR 2019). So, if you want to get a higher AP, just increasing it. But this may also cause unstable training, because this is equivalent to increasing the learning rate.
+Of course, as we observed that for dense anchor algorithms, increasing the `LOSS_BBOX_WEIGHT` appropriately can improve the performance, and the same argument is obtained in GHM (AAAI 2019)and Libra R-CNN (CVPR 2019). So, if you want to get a higher AP, just increasing it. But this may also cause unstable training, because this is equivalent to increase the learning rate.
 
 ### Network Configurations
 
