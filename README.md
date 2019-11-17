@@ -40,6 +40,13 @@ MODEL:
 ```
 Of course, as we observed that for dense anchor algorithms, increasing the `LOSS_BBOX_WEIGHT` appropriately can improve the performance, and the same argument is obtained in GHM (AAAI 2019)and Libra R-CNN (CVPR 2019). So, if you want to get a higher AP, just increasing it. But this may also cause unstable training, because this is equivalent to increase the learning rate.
 
+### DIoU-NMS
+NMS can be chosen with the `TEST.DIOU_NMS` option in the `lib/core/config.py` file. If set it to `False`, it means using greedy-NMS.
+Besides that, we also found that for Faster R-CNN, we introduce beta1 for DIoU-NMS, that is DIoU = IoU - R_DIoU ^ {beta1}. With this operation, DIoU-NMS can perform better than default beta1=1.0. In our constrained search, the following values appear to work well for the DIoU-NMS in Faster R-CNN.
+```
+TEST.DIOU_NMS.BETA1=1.1
+```
+
 ### Network Configurations
 
 We add sample configuration files used for our experiment in `config/baselines`. Our experiments in the paper are based on `e2e_faster_rcnn_R-50-FPN_1x.yaml` as following:
@@ -47,13 +54,6 @@ We add sample configuration files used for our experiment in `config/baselines`.
 ```
 e2e_faster_rcnn_R-50-FPN_diou_1x.yaml  # Faster R-CNN + DIoU loss
 e2e_faster_rcnn_R-50-FPN_ciou_1x.yaml   # Faster R-CNN + CIoU loss
-```
-
-### DIoU-NMS
-NMS can be chosen with the `TEST.DIOU_NMS` option in the `lib/core/config.py` file. If set it to `False`, it means using greedy-NMS.
-Besides that, we also found that for Faster R-CNN, we introduce beta1 for DIoU-NMS, that is DIoU = IoU - R_DIoU ^ {beta1}. With this operation, DIoU-NMS can perform better than default beta1=1.0.
-```
-TEST.DIOU_NMS.BETA1=1.1
 ```
 
 ## Train and evaluation commands
