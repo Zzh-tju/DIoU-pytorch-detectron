@@ -316,7 +316,7 @@ def box_voting(top_dets, all_dets, thresh, scoring_method='ID', beta=1.0):
 
     return top_dets_out
 
-def nms(dets, thresh, beta1):
+def nms(dets, thresh):
     """Apply classic DPM-style greedy NMS."""
     if dets.shape[0] == 0:
         return []
