@@ -87,6 +87,7 @@ Compile the CUDA code:
 ```
 cd lib  # please change to this directory
 sh make.sh
+```
 ### Data Preparation
 
 Create a data folder under the repo,
