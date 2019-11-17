@@ -21,7 +21,7 @@ This repository is a fork of [generalized-iou/Detectron.pytorch](https://github.
 
 ### Losses
 
-The loss can be chosen with the `MODEL.LOSS_TYPE` option in the configuration file. The valid options are currently: `[iou|giou|sl1]`. At this moment, we apply bounding box loss only on final bounding box refinement layer, just as in the paper.
+The loss can be chosen with the `MODEL.LOSS_TYPE` option in the configuration file. The valid options are currently: `[iou|giou|diou|ciou|sl1]`. At this moment, we apply bounding box loss only on final bounding box refinement layer, just as in the paper.
 
 ```
 MODEL:
