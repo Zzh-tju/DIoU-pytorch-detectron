@@ -174,4 +174,4 @@ Here are the trained models using the configurations in this repository.
  - [Faster RCNN + IoU](https://pan.baidu.com/s/1UGMQ90omy2MuNKbiVWbPYQ)
  - [Faster RCNN + GIoU](https://pan.baidu.com/s/1x3N7eYnylTO41klUQTlszw)
  - [Faster RCNN + DIoU](https://pan.baidu.com/s/1DtLwpSpbfNbzQ8nlHdt9Xg)
- - [Faster RCNN + GIoU](https://pan.baidu.com/s/1gUUByFBeL1DgLvHvogMUfw)
+ - [Faster RCNN + CIoU](https://pan.baidu.com/s/1gUUByFBeL1DgLvHvogMUfw)
