@@ -139,6 +139,29 @@ python tools/train_net_step.py --dataset coco2017 --cfg configs/baselines/e2e_fa
 python tools/test_net.py --dataset coco2017 --cfg configs/baselines/e2e_faster_rcnn_R-50-FPN_ciou_1x.yaml --load_ckpt {full_path_of_the_trained_weight}
 ```
 
+The following example is the evaluation of our CIoU loss:
+```
+INFO json_dataset_evaluator.py: 232: ~~~~ Summary metrics ~~~~
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.387
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.586
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.420
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.213
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.418
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.515
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.320
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.502
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.527
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.325
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.560
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.680
+INFO json_dataset_evaluator.py: 199: Wrote json eval results to: test/detection_results.pkl
+INFO task_evaluation.py:  61: Evaluating bounding boxes is done!
+INFO task_evaluation.py: 180: copypaste: Dataset: coco_2017_val
+INFO task_evaluation.py: 182: copypaste: Task: box
+INFO task_evaluation.py: 185: copypaste: AP,AP50,AP75,APs,APm,APl
+INFO task_evaluation.py: 186: copypaste: 0.3865,0.5856,0.4196,0.2132,0.4183,0.5151
+```
+
 If you want to resume training from a specific iteration's weight file, please run:
 ```
 python tools/train_net_step.py --dataset coco2017 --cfg configs/baselines/e2e_faster_rcnn_R-50-FPN_ciou_1x.yaml --resume --use_tfboard --load_ckpt {full_path_of_the_trained_weight}
