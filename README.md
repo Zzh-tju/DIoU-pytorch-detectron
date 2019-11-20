@@ -1,7 +1,9 @@
-# DIoU-pytorch-detectron
-Distance-IoU Loss: Faster and Better Learning for Bounding Box Regression (AAAI 2020)
+## DIoU-pytorch-detectron
+### Distance-IoU Loss: Faster and Better Learning for Bounding Box Regression 
 
-# Faster/Mask R-CNN with DIoU and CIoU losses implemented in - PyTorch-Detectron
+[[arxiv](https://arxiv.org/abs/1911.08287)] [[pdf](https://arxiv.org/pdf/1911.08287.pdf)]
+
+## Faster/Mask R-CNN with DIoU and CIoU losses implemented in - PyTorch-Detectron
 
 If you use this work, please consider citing:
 
