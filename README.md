@@ -19,7 +19,7 @@ If you use this work, please consider citing:
 
 ## Modifications in this repository
 
-This repository is a fork of [generalized-iou/Detectron.pytorch](https://github.com/generalized-iou/Detectron.pytorch), with an implementation of IoU, GIoU, DIoU and CIoU losses while keeping the code as close to the original as possible. It is also possible to train the network with SmoothL1 loss as in the original code. See the options below.
+This repository is a fork of [generalized-iou/Detectron.pytorch](https://github.com/generalized-iou/Detectron.pytorch) and [roytseng-tw/Detectron.pytorch](https://github.com/roytseng-tw/Detectron.pytorch), with an implementation of IoU, GIoU, DIoU and CIoU losses while keeping the code as close to the original as possible. It is also possible to train the network with SmoothL1 loss as in the original code. See the options below.
 
 ### Losses
 
