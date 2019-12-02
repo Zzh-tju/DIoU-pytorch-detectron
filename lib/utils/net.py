@@ -35,7 +35,7 @@ def bbox_transform(deltas, weights):
 
     return x1.view(-1), y1.view(-1), x2.view(-1), y2.view(-1)
 
-def compute_rioud(output, target, bbox_inside_weights, bbox_outside_weights,
+def compute_diou(output, target, bbox_inside_weights, bbox_outside_weights,
                 transform_weights=None):
     if transform_weights is None:
         transform_weights = (1., 1., 1., 1.)
@@ -66,15 +66,15 @@ def compute_rioud(output, target, bbox_inside_weights, bbox_outside_weights,
     unionk = (x2 - x1) * (y2 - y1) + (x2g - x1g) * (y2g - y1g) - intsctk + 1e-7
     iouk = intsctk / unionk
 
-    diag_c = ((xc2 - xc1) ** 2) + ((yc2 - yc1) ** 2) +1e-7
-    diag = ((x_p - x_g) ** 2) + ((y_p - y_g) ** 2)
-    d = diag / diag_c
-    rioud = iouk - d
+    c = ((xc2 - xc1) ** 2) + ((yc2 - yc1) ** 2) +1e-7
+    d = ((x_p - x_g) ** 2) + ((y_p - y_g) ** 2)
+    u = d / c
+    diouk = iouk - u
     iou_weights = bbox_inside_weights.view(-1, 4).mean(1) * bbox_outside_weights.view(-1, 4).mean(1)
     iouk = ((1 - iouk) * iou_weights).sum(0) / output.size(0)
-    rioud = ((1 - rioud) * iou_weights).sum(0) / output.size(0)
+    diouk = ((1 - diouk) * iou_weights).sum(0) / output.size(0)
 
-    return iouk, rioud
+    return iouk, diouk
 
 
 def compute_ciou(output, target, bbox_inside_weights, bbox_outside_weights,
@@ -113,9 +113,9 @@ def compute_ciou(output, target, bbox_inside_weights, bbox_outside_weights,
     unionk = (x2 - x1) * (y2 - y1) + (x2g - x1g) * (y2g - y1g) - intsctk + 1e-7
     iouk = intsctk / unionk
 
-    diag_c = ((xc2 - xc1) ** 2) + ((yc2 - yc1) ** 2) +1e-7
-    diag = ((x_center - x_center_g) ** 2) + ((y_center - y_center_g) ** 2)
-    d = diag / diag_c
+    c = ((xc2 - xc1) ** 2) + ((yc2 - yc1) ** 2) +1e-7
+    d = ((x_center - x_center_g) ** 2) + ((y_center - y_center_g) ** 2)
+    u = d / c
 
     with torch.no_grad():
         arctan = torch.atan(w_gt/h_gt)-torch.atan(w_pred/h_pred)
@@ -124,12 +124,12 @@ def compute_ciou(output, target, bbox_inside_weights, bbox_outside_weights,
         alpha = v / (S + v)
         w_temp = 2 * w_pred
     ar = (8 / (math.pi ** 2)) * arctan * ((w_pred - w_temp) * h_pred)
-    ciou = iouk - (d + alpha * ar)
+    ciouk = iouk - (u + alpha * ar)
     iou_weights = bbox_inside_weights.view(-1, 4).mean(1) * bbox_outside_weights.view(-1, 4).mean(1)
     iouk = ((1 - iouk) * iou_weights).sum(0) / output.size(0)
-    ciou = ((1 - miouk) * iou_weights).sum(0) / output.size(0)
+    ciouk = ((1 - ciouk) * iou_weights).sum(0) / output.size(0)
 
-    return iouk, ciou
+    return iouk, ciouk
 
 def compute_giou(output, target, bbox_inside_weights, bbox_outside_weights,
                 transform_weights=None):
