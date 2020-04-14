@@ -116,15 +116,11 @@ def compute_ciou(output, target, bbox_inside_weights, bbox_outside_weights,
     c = ((xc2 - xc1) ** 2) + ((yc2 - yc1) ** 2) +1e-7
     d = ((x_center - x_center_g) ** 2) + ((y_center - y_center_g) ** 2)
     u = d / c
-
+    v = (4 / (math.pi ** 2)) * torch.pow((torch.atan(w_gt/h_gt)-torch.atan(w_pred/h_pred)),2)
     with torch.no_grad():
-        arctan = torch.atan(w_gt/h_gt)-torch.atan(w_pred/h_pred)
-        v = (4 / (math.pi ** 2)) * torch.pow((torch.atan(w_gt/h_gt)-torch.atan(w_pred/h_pred)),2)
         S = 1 - iouk
         alpha = v / (S + v)
-        w_temp = 2 * w_pred
-    ar = (8 / (math.pi ** 2)) * arctan * ((w_pred - w_temp) * h_pred)
-    ciouk = iouk - (u + alpha * ar)
+    ciouk = iouk - (u + alpha * v)
     iou_weights = bbox_inside_weights.view(-1, 4).mean(1) * bbox_outside_weights.view(-1, 4).mean(1)
     iouk = ((1 - iouk) * iou_weights).sum(0) / output.size(0)
     ciouk = ((1 - ciouk) * iou_weights).sum(0) / output.size(0)
