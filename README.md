@@ -24,7 +24,7 @@ This is the code for our papers:
 
 ## Distance-IoU Loss into other SOTA detection methods can be found [here](https://github.com/Zzh-tju/DIoU). 
 
-# Faster/Mask R-CNN with DIoU and CIoU losses implemented in - PyTorch-Detectron
+## Faster/Mask R-CNN with DIoU and CIoU losses implemented in - PyTorch-Detectron
 
 ## Modifications in this repository
 
